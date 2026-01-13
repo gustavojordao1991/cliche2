@@ -19,10 +19,12 @@ export default function Index() {
   // Calcula o valor da compra (valor do clichê × 18)
   const calcularValorCompra = () => {
     const valor = parseFloat(valorCliche.replace(",", "."));
+    console.log("Calculando - Valor Clichê:", valorCliche, "Parsed:", valor);
     if (isNaN(valor) || valor <= 0) {
       return "0,00";
     }
     const resultado = valor * 18;
+    console.log("Resultado:", resultado);
     return resultado.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
