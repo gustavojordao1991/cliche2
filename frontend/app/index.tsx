@@ -49,10 +49,7 @@ export default function Index() {
             {/* Header */}
             <View style={styles.header}>
               <Ionicons name="calculator" size={48} color="#4A90E2" />
-              <Text style={styles.title}>Calculadora de Regra de Três</Text>
-              <Text style={styles.subtitle}>
-                Valor da Compra = Valor do Clichê × 18
-              </Text>
+              <Text style={styles.title}>Calculadora de Isenção de Clichê</Text>
             </View>
 
             {/* Card de Input */}
