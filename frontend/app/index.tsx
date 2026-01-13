@@ -32,6 +32,7 @@ export default function Index() {
   const formatarValor = (text: string) => {
     // Remove tudo que não é número, vírgula ou ponto
     const limpo = text.replace(/[^\d.,]/g, "");
+    console.log("Valor digitado:", limpo);
     setValorCliche(limpo);
   };
 
