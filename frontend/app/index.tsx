@@ -68,6 +68,12 @@ export default function Index() {
                     style={styles.input}
                     value={valorCliche}
                     onChangeText={formatarValor}
+                    onChange={(e) => {
+                      // Fallback para web
+                      if (Platform.OS === 'web' && e.nativeEvent) {
+                        formatarValor(e.nativeEvent.text || '');
+                      }
+                    }}
                     keyboardType="decimal-pad"
                     placeholder="0,00"
                     placeholderTextColor="#999"
