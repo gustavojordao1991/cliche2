@@ -6,7 +6,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
-  TouchableWithoutFeedback,
+  Pressable,
   Keyboard,
   ScrollView,
   SafeAreaView,
@@ -19,12 +19,10 @@ export default function Index() {
   // Calcula o valor da compra (valor do clichê × 18)
   const calcularValorCompra = () => {
     const valor = parseFloat(valorCliche.replace(",", "."));
-    console.log("Calculando - Valor Clichê:", valorCliche, "Parsed:", valor);
     if (isNaN(valor) || valor <= 0) {
       return "0,00";
     }
     const resultado = valor * 18;
-    console.log("Resultado:", resultado);
     return resultado.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
@@ -34,7 +32,6 @@ export default function Index() {
   const formatarValor = (text: string) => {
     // Remove tudo que não é número, vírgula ou ponto
     const limpo = text.replace(/[^\d.,]/g, "");
-    console.log("Valor digitado:", limpo);
     setValorCliche(limpo);
   };
 
@@ -44,7 +41,7 @@ export default function Index() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Pressable onPress={Keyboard.dismiss} style={styles.container}>
           <ScrollView
             contentContainerStyle={styles.scrollContent}
             keyboardShouldPersistTaps="handled"
@@ -68,16 +65,11 @@ export default function Index() {
                     style={styles.input}
                     value={valorCliche}
                     onChangeText={formatarValor}
-                    onChange={(e) => {
-                      // Fallback para web
-                      if (Platform.OS === 'web' && e.nativeEvent) {
-                        formatarValor(e.nativeEvent.text || '');
-                      }
-                    }}
                     keyboardType="decimal-pad"
                     placeholder="0,00"
                     placeholderTextColor="#999"
                     returnKeyType="done"
+                    autoFocus={false}
                   />
                 </View>
               </View>
@@ -105,7 +97,7 @@ export default function Index() {
               </Text>
             </View>
           </ScrollView>
-        </TouchableWithoutFeedback>
+        </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -185,6 +177,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#2C3E50",
     padding: 0,
+    outlineStyle: "none",
   },
   arrowContainer: {
     alignItems: "center",
